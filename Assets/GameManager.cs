@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             var mousePos = Input.mousePosition;
@@ -46,5 +48,6 @@ public class GameManager : MonoBehaviour
                 _SelectedBox.position = boxNewPos;
             }
         }
+        */
     }
 }
