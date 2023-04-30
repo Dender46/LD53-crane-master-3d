@@ -1,11 +1,55 @@
+using UnityEditor;
 using UnityEngine;
+
+public class ReadOnlyAttribute : PropertyAttribute
+ {
+ 
+ }
+ 
+ [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
+ public class ReadOnlyDrawer : PropertyDrawer
+ {
+     public override float GetPropertyHeight(SerializedProperty property,
+                                             GUIContent label)
+     {
+         return EditorGUI.GetPropertyHeight(property, label, true);
+     }
+ 
+     public override void OnGUI(Rect position,
+                                SerializedProperty property,
+                                GUIContent label)
+     {
+         GUI.enabled = false;
+         EditorGUI.PropertyField(position, property, label, true);
+         GUI.enabled = true;
+     }
+ }
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject _BoxPrefab;
     [SerializeField] float _DistanceFromGround = 5.0f;
 
+    Transform _DeliveryBoxesContainer;
     Rigidbody _SelectedBox = null;
+
+    static public GameManager instance;
+
+    static public int Score = 0;
+
+    void Start()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            _DeliveryBoxesContainer = GameObject.Find("(C) Delivery Boxes").transform;
+        }
+        else
+        {
+            Debug.LogWarning("Instance already exists, destroying 'this'!");
+            Destroy(this);
+        }
+    }
 
     void Update()
     {
@@ -19,7 +63,7 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.transform.gameObject.tag == "Ground")
                 {
-                    var newBox = Instantiate(_BoxPrefab);
+                    var newBox = Instantiate(_BoxPrefab, _DeliveryBoxesContainer);
 
                     var boxNewPos = new Vector3(hit.point.x, _DistanceFromGround, hit.point.z);
                     newBox.transform.localPosition = boxNewPos;
