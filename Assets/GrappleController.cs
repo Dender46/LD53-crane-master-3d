@@ -15,6 +15,7 @@ public class GrappleController : MonoBehaviour
     }
 
     [SerializeField] float _MovementSpeed = 5.0f;
+    [SerializeField] float _MovementSpeedMultiplier = 2.0f;
     [SerializeField] float _LoweringSpeed = 2.0f;
     [SerializeField] UpDown _LoweringUpDown = new UpDown(){ Up = 0.5f, Down = 9.0f };
 
@@ -64,6 +65,10 @@ public class GrappleController : MonoBehaviour
     void TryMovement()
     {
         var actualSpeed = _MovementSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            actualSpeed *= _MovementSpeedMultiplier;
+        }
         var newPosition = _ThisRB.position;
 
         if (Input.GetKey(KeyCode.W))    newPosition.z += actualSpeed;
