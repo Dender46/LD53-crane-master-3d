@@ -3,50 +3,27 @@ using UnityEngine;
 
 public class BoatController : MonoBehaviour
 {
-    [Serializable]
-    struct MinMax
-    {
-        public float Start, End;
-    }
-
     [SerializeField] Transform _BoxesDeliveryContainer;
     [SerializeField] float _Speed = 5.0f;
-
-    [SerializeField] MinMax _StartEnd = new MinMax{ Start = -31.0f, End = 40.0f };
 
     [ReadOnly] public int _NeedBoxes = 3;
     [ReadOnly] public int _BoxesOnBoard = 0;
 
-    void Start()
-    {
-        
-    }
 
-    void Update()
+    public void Move()
     {
-        if (_BoxesOnBoard >= _NeedBoxes)
-        {
-            var newPos = transform.position;
-            newPos.z += _Speed * Time.deltaTime;
-            transform.position = newPos;
-
-            if (newPos.z > _StartEnd.End)
-            {
-                // Set boat at the beggining of queue
-                SetBack();
-            }
-        }
-    }
-
-    void SetBack()
-    {
+        var actualSpeed = _Speed * Time.deltaTime;
         var newPos = transform.position;
-        newPos.z = _StartEnd.Start;
+        newPos.z += actualSpeed;
         transform.position = newPos;
+    }
 
-        foreach (Transform child in _BoxesDeliveryContainer)
+    public void ClearCargo()
+    {
+        _BoxesOnBoard = 0;
+        foreach (Transform box in _BoxesDeliveryContainer)
         {
-            Destroy(child.gameObject);
+            Destroy(box.gameObject);
         }
     }
 
@@ -57,6 +34,11 @@ public class BoatController : MonoBehaviour
             other.transform.parent = _BoxesDeliveryContainer;
             GameManager.Score++;
             _BoxesOnBoard++;
+
+            if (_BoxesOnBoard >= _NeedBoxes)
+            {
+                BoatsManager.RunQueue();
+            }
         }
     }
 }
