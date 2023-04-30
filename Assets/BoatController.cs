@@ -14,8 +14,8 @@ public class BoatController : MonoBehaviour
 
     [SerializeField] MinMax _StartEnd = new MinMax{ Start = -31.0f, End = 40.0f };
 
-    int _NeedBoxes = 3;
-    int _BoxesOnBoard = 0;
+    [ReadOnly] public int _NeedBoxes = 3;
+    [ReadOnly] public int _BoxesOnBoard = 0;
 
     void Start()
     {
