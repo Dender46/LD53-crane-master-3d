@@ -4,9 +4,9 @@ using UnityEngine;
 public class GrappleController : MonoBehaviour
 {
     [Serializable]
-    public struct MinMax
+    public struct UpDown
     {
-        public float Min, Max;
+        public float Up, Down;
     }
 
     enum LoweringState
@@ -16,7 +16,7 @@ public class GrappleController : MonoBehaviour
 
     [SerializeField] float _MovementSpeed = 5.0f;
     [SerializeField] float _LoweringSpeed = 2.0f;
-    [SerializeField] MinMax _LoweringMinMax = new MinMax(){ Min = 3.0f, Max = 10.0f };
+    [SerializeField] UpDown _LoweringUpDown = new UpDown(){ Up = 0.5f, Down = 9.0f };
 
     Rigidbody _ThisRB;
     SpringJoint _ThisJoint;
@@ -42,18 +42,18 @@ public class GrappleController : MonoBehaviour
             if (_LoweringState == LoweringState.GoingDown)
             {
                 newAnchor.y += grapplerSpeed;
-                if (newAnchor.y > _LoweringMinMax.Max)
+                if (newAnchor.y > _LoweringUpDown.Down)
                 {
-                    newAnchor.y = _LoweringMinMax.Max;
+                    newAnchor.y = _LoweringUpDown.Down;
                     _LoweringState = LoweringState.Stationary;
                 }
             }
             else if (_LoweringState == LoweringState.GoingUp)
             {
                 newAnchor.y -= grapplerSpeed;
-                if (newAnchor.y < _LoweringMinMax.Min)
+                if (newAnchor.y < _LoweringUpDown.Up)
                 {
-                    newAnchor.y = _LoweringMinMax.Min;
+                    newAnchor.y = _LoweringUpDown.Up;
                     _LoweringState = LoweringState.Stationary;
                 }
             }
