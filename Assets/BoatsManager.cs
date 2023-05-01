@@ -32,9 +32,9 @@ public class BoatsManager : MonoBehaviour
             {
                 var boatController = t.gameObject.GetComponent<BoatController>();
                 boatController.Move();
-                if (t.position.z > _StartEnd.End)
+                if (t.localPosition.z > _StartEnd.End)
                 {
-                    t.position = new Vector3(t.position.x, t.position.y, _StartEnd.Start);
+                    t.localPosition = new Vector3(t.localPosition.x, t.localPosition.y, _StartEnd.Start);
                     boatController.ResetStatus();
                     StopQueue();
                     StartMission();
@@ -58,7 +58,7 @@ public class BoatsManager : MonoBehaviour
         foreach (Transform t in _BoatsContainer.transform)
         {
             // is boat in the middle?
-            if (-1.0f < t.position.z && t.position.z < 1.0f)
+            if (-1.0f < t.localPosition.z && t.localPosition.z < 1.0f)
             {
                 t.gameObject.GetComponent<BoatController>().StartMission();
             }

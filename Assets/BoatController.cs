@@ -47,7 +47,7 @@ public class BoatController : MonoBehaviour
             return;
         }
 
-        if (transform.position.z > 5)
+        if (transform.localPosition.z > 5)
         {
             var newScale = _UIMissionText.rectTransform.parent.localScale;
             newScale.x -= 0.3f * Time.deltaTime;
