@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] Text _UIScore;
+    [Space(10)]
     [SerializeField] GameObject _BoxPrefab;
     [SerializeField] float _DistanceFromGround = 5.0f;
 
@@ -10,14 +13,23 @@ public class GameManager : MonoBehaviour
 
     static public GameManager instance;
 
-    static public int Score = 0;
+    int _Score = 0;
+    static public int Score
+    {
+        set
+        {
+            instance._Score = value;
+            instance._UIScore.text = "Score: " + value;
+        }
+        get { return instance._Score; }
+    }
 
     void Start()
     {
         if (instance == null)
         {
             instance = this;
-            _DeliveryBoxesContainer = GameObject.Find("(C) Delivery Boxes").transform;
+            _DeliveryBoxesContainer = GameObject.Find("/(C) Delivery Boxes").transform;
         }
         else
         {
