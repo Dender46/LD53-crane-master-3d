@@ -18,10 +18,14 @@ public class GrappleController : MonoBehaviour
     [SerializeField] float _MovementSpeedMultiplier = 2.0f;
     [SerializeField] float _LoweringSpeed = 2.0f;
     [SerializeField] UpDown _LoweringUpDown = new UpDown(){ Up = 0.5f, Down = 9.0f };
+    [Space(10)]
+    [SerializeField] AudioClip _GoingUpAudio;
+    [SerializeField] AudioClip _GoingDownAudio;
 
     Rigidbody _ThisRB;
     SpringJoint _ThisJoint;
     LineRenderer _ThisRopeDecor;
+    AudioSource _ThisAudioSource;
 
     LoweringState _LoweringState = LoweringState.Stationary;
     LoweringState _LastLoweringState = LoweringState.GoingUp;
@@ -31,6 +35,7 @@ public class GrappleController : MonoBehaviour
         _ThisRB = GetComponent<Rigidbody>();
         _ThisJoint = GetComponent<SpringJoint>();
         _ThisRopeDecor = GetComponent<LineRenderer>();
+        _ThisAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -59,6 +64,7 @@ public class GrappleController : MonoBehaviour
                 {
                     newAnchor.y = _LoweringUpDown.Down;
                     _LoweringState = LoweringState.Stationary;
+                    _ThisAudioSource.Stop();
                 }
             }
             else if (_LoweringState == LoweringState.GoingUp)
@@ -68,6 +74,7 @@ public class GrappleController : MonoBehaviour
                 {
                     newAnchor.y = _LoweringUpDown.Up;
                     _LoweringState = LoweringState.Stationary;
+                    _ThisAudioSource.Stop();
                 }
             }
             _ThisJoint.connectedAnchor = newAnchor;
@@ -97,28 +104,43 @@ public class GrappleController : MonoBehaviour
         {
             if (_LoweringState == LoweringState.GoingDown)
             {
-                _LoweringState = LoweringState.GoingUp;
-                _LastLoweringState = LoweringState.GoingUp;
+                SetLoweringState(LoweringState.GoingUp);
             }
             else if (_LoweringState == LoweringState.GoingUp)
             {
-                _LoweringState = LoweringState.GoingDown;
-                _LastLoweringState = LoweringState.GoingDown;
+                SetLoweringState(LoweringState.GoingDown);
             }
 
             if (_LoweringState == LoweringState.Stationary)
             {
                 if (_LastLoweringState == LoweringState.GoingDown)
                 {
-                    _LoweringState = LoweringState.GoingUp;
-                    _LastLoweringState = LoweringState.GoingUp;
+                    SetLoweringState(LoweringState.GoingUp);
                 }
                 else if (_LastLoweringState == LoweringState.GoingUp)
                 {
-                    _LoweringState = LoweringState.GoingDown;
-                    _LastLoweringState = LoweringState.GoingDown;
+                    SetLoweringState(LoweringState.GoingDown);
                 }
             }
+        }
+    }
+
+    void SetLoweringState(LoweringState state)
+    {
+        _LoweringState = state;
+        _LastLoweringState = state;
+        switch (state)
+        {
+            case LoweringState.GoingUp:
+                _ThisAudioSource.Stop();
+                //_ThisAudioSource.pitch = 2.0f;
+                _ThisAudioSource.PlayOneShot(_GoingUpAudio);
+                break;
+            case LoweringState.GoingDown:
+                _ThisAudioSource.Stop();
+                _ThisAudioSource.pitch = 1.0f;
+                _ThisAudioSource.PlayOneShot(_GoingDownAudio);
+                break;
         }
     }
 }

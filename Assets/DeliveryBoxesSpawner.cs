@@ -19,6 +19,11 @@ public class DeliveryBoxesSpawner : MonoBehaviour
     [SerializeField] MinMax _Strength = new MinMax(){ Min = 10.0f, Max = 20.0f };
     [SerializeField] Vector3 _Direction = Vector3.one;
     [SerializeField] List<Material> _BoxMaterials;
+    [Space(10)]
+    [SerializeField] MinMax _GreenChance = new MinMax(){ Min = 0.00f, Max = 0.25f };
+    [SerializeField] MinMax _BlueChance  = new MinMax(){ Min = 0.25f, Max = 0.50f };
+    [SerializeField] Color _GreenTint;
+    [SerializeField] Color _BlueTint;
 
     Transform _BoxesContainer;
     float _Timer = 0.0f;
@@ -76,6 +81,21 @@ public class DeliveryBoxesSpawner : MonoBehaviour
         newBox.transform.GetChild(0).GetComponent<MeshRenderer>().material = boxMaterial;
         
         newBox.transform.localScale *= Random.Range(1.0f, 1.3f);
+
+        if (GameManager.Score >= 8)
+        {
+            var chance = Random.Range(0.0f, 1.0f);
+            if (_GreenChance.Min < chance && chance < _GreenChance.Max)
+            {
+                newBox.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = _GreenTint;
+                newBox.gameObject.GetComponent<BoxBonus>()._BonusType = BoxBonus.BonusType.BonusPoints;
+            }
+            else if (_BlueChance.Min < chance && chance < _BlueChance.Max)
+            {
+                newBox.transform.GetChild(0).GetComponent<MeshRenderer>().material.color = _BlueTint;
+                newBox.gameObject.GetComponent<BoxBonus>()._BonusType = BoxBonus.BonusType.AddTime;
+            }
+        }
     }
 
     void OnDrawGizmos()

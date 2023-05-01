@@ -13,7 +13,6 @@ public class WaterWaves : MonoBehaviour
     void FixedUpdate()
     {
         _Wobble = Mathf.Sin(Time.timeSinceLevelLoad) / _Amplitude;
-        Debug.Log(_Wobble);
 
         _WaterPlane.position = new Vector3(_WaterPlane.position.x, _WaterPlane.position.y + _Wobble, _WaterPlane.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y + _Wobble, transform.position.z);

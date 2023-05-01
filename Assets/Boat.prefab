@@ -572,7 +572,6 @@ GameObject:
   - component: {fileID: 8352792009492332453}
   - component: {fileID: 8352792009492332459}
   - component: {fileID: 8352792009492332458}
-  - component: {fileID: 6758017127509560893}
   - component: {fileID: 792782960171487932}
   m_Layer: 0
   m_Name: Boat
@@ -634,23 +633,10 @@ MonoBehaviour:
     Max: 10
   _NeedBoxes: 3
   _BoxesOnBoard: 0
+  _BoxScored: {fileID: 8300000, guid: 52a2d537974df5849b2fbab8d40454a1, type: 3}
   _MissionAccomplishedAudio: {fileID: 8300000, guid: 1c260fa5a459ad0498e44de11255df3c, type: 3}
   _IsMissionStarted: 0
   _Timer: 0
---- !u!114 &6758017127509560893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8352792009492332452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd4d665beaa3f040bc7ead90b4f0575, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Sounds:
-  - {fileID: 8300000, guid: 52a2d537974df5849b2fbab8d40454a1, type: 3}
 --- !u!82 &792782960171487932
 AudioSource:
   m_ObjectHideFlags: 0

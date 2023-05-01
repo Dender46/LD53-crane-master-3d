@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7359649466971353279}
   - component: {fileID: 2718718213947459636}
   - component: {fileID: 4381652187167649344}
+  - component: {fileID: -6638589179766993132}
   m_Layer: 0
   m_Name: DeliveryBox
   m_TagString: DeliveryBox
@@ -262,3 +263,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2495a5b385654cf429563e3df3e2bf0f, type: 3}
   - {fileID: 8300000, guid: 06c5f258c49e1704392ad89830f936b2, type: 3}
   - {fileID: 8300000, guid: e8724f4b5f1649345a1661008ef8540e, type: 3}
+--- !u!114 &-6638589179766993132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359649466971353273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f55ce525d88879458b19ed1f4143eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -12,15 +13,17 @@ public class BoatController : MonoBehaviour
     }
     [SerializeField] Text _UIMissionText;
     [SerializeField] Image _UIMissionTimer;
+    [SerializeField] BonusShower _UIBonusShower;
     [Space(10)]
     [SerializeField] Transform _BoxesDeliveryContainer;
     [SerializeField] float _Speed = 5.0f;
     [Space(10)]
     [SerializeField] float _TimeForDelivery = 60.0f;
     [SerializeField] MinMax _MinMaxNeededBoxes;
-    [SerializeField, ReadOnly] int _NeedBoxes = 3;
+    [SerializeField, ReadOnly] int _NeedBoxes = -1;
     [SerializeField, ReadOnly] int _BoxesOnBoard = 0;
     [Space(10)]
+    [SerializeField] AudioClip _BoxScored;
     [SerializeField] AudioClip _MissionAccomplishedAudio;
     [Space(20)]
     [SerializeField] bool _IsMissionStarted = false;
@@ -29,13 +32,6 @@ public class BoatController : MonoBehaviour
 
     void Start()
     {
-        _NeedBoxes = Random.Range(_MinMaxNeededBoxes.Min, _MinMaxNeededBoxes.Max);
-        // If basically first boat:
-        if (_IsMissionStarted)
-        {
-            _NeedBoxes = 3;
-        }
-
         _UIMissionText.text = "0 / " + _NeedBoxes;
     }
 
@@ -104,11 +100,33 @@ public class BoatController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (_BoxesOnBoard >= _NeedBoxes)
+        {
+            return;
+        }
+
         if (other.gameObject.tag == "DeliveryBox")
         {
             other.gameObject.tag = "UnpickableDeliveryBox";
             other.transform.parent = _BoxesDeliveryContainer;
             GameManager.Score++;
+
+            var bonusType = other.gameObject.GetComponent<BoxBonus>()._BonusType;
+            switch (bonusType)
+            {
+                case BoxBonus.BonusType.Regular:
+                    break;
+                case BoxBonus.BonusType.BonusPoints:
+                    _UIBonusShower.ShowBonus("+2 Points");
+                    GameManager.Score += 2;
+                    break;
+                case BoxBonus.BonusType.AddTime:
+                    _UIBonusShower.ShowBonus("More Time");
+                    _Timer -= 10.0f;
+                    break;
+            }
+
+            GetComponent<AudioSource>().PlayOneShot(_BoxScored);
 
             _BoxesOnBoard++;
             _UIMissionText.text = _BoxesOnBoard + " / " + _NeedBoxes;
