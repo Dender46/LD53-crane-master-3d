@@ -82,7 +82,7 @@ public class DeliveryBoxesSpawner : MonoBehaviour
         
         newBox.transform.localScale *= Random.Range(1.0f, 1.3f);
 
-        if (GameManager.Score >= 8)
+        if (GameManager.Score >= 4)
         {
             var chance = Random.Range(0.0f, 1.0f);
             if (_GreenChance.Min < chance && chance < _GreenChance.Max)
