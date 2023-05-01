@@ -81,9 +81,6 @@ public class GrappleController : MonoBehaviour
 
     void TryLowering()
     {
-        if (_LoweringState != LoweringState.Stationary)
-            return;
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (_LoweringState == LoweringState.GoingDown)

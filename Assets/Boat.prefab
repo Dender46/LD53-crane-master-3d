@@ -382,11 +382,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 515370015ef15354bb887badb4e8487c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _UIMissionText: {fileID: 0}
   _BoxesDeliveryContainer: {fileID: 8352792008503167844}
   _Speed: 15
-  _StartEnd:
-    Start: -31
-    End: 40
+  _TimeForDelivery: 60
+  _MinMaxNeededBoxes:
+    Min: 3
+    Max: 10
+  _NeedBoxes: 3
+  _BoxesOnBoard: 0
+  _IsMissionStarted: 0
 --- !u!1 &8352792009774918446
 GameObject:
   m_ObjectHideFlags: 0

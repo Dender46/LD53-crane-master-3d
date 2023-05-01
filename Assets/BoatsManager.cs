@@ -14,7 +14,7 @@ public class BoatsManager : MonoBehaviour
         Stopped, Running
     }
     
-    [SerializeField] MinMax _StartEnd = new MinMax{ Start = -31.0f, End = 40.0f };
+    [SerializeField] MinMax _StartEnd = new MinMax{ Start = -40.0f, End = 40.0f };
 
     static Transform _BoatsContainer;
     static State _State;
@@ -35,8 +35,9 @@ public class BoatsManager : MonoBehaviour
                 if (t.position.z > _StartEnd.End)
                 {
                     t.position = new Vector3(t.position.x, t.position.y, _StartEnd.Start);
-                    boatController.ClearCargo();
+                    boatController.ResetStatus();
                     StopQueue();
+                    StartMission();
                 }
             }
         }
@@ -50,5 +51,17 @@ public class BoatsManager : MonoBehaviour
     static void StopQueue()
     {
         _State = State.Stopped;
+    }
+
+    static void StartMission()
+    {
+        foreach (Transform t in _BoatsContainer.transform)
+        {
+            // is boat in the middle?
+            if (-1.0f < t.position.z && t.position.z < 1.0f)
+            {
+                t.gameObject.GetComponent<BoatController>().StartMission();
+            }
+        }
     }
 }
