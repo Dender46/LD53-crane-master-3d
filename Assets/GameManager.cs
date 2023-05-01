@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,12 +8,17 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [SerializeField] GameObject _BoxPrefab;
     [SerializeField] float _DistanceFromGround = 5.0f;
+    [Space(10)]
+    [SerializeField] GameObject _UIMainMenu;
+    [SerializeField] GameObject _UIGame;
+    [SerializeField] GameObject _UIGameOver;
 
     Transform _DeliveryBoxesContainer;
     Rigidbody _SelectedBox = null;
 
     static public GameManager instance;
 
+    bool _IsPlaying = false;
     int _Score = 0;
     static public int Score
     {
@@ -77,5 +83,30 @@ public class GameManager : MonoBehaviour
                 _SelectedBox.position = boxNewPos;
             }
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameOver();
+        }
+    }
+
+    static public bool IsPlaying()
+    {
+        return instance._IsPlaying;
+    }
+
+    static public void StartGame()
+    {
+        instance._IsPlaying = true;
+        instance._UIMainMenu.active    = false;
+        instance._UIGame.active        = true;
+        instance._UIGameOver.active    = false;
+    }
+
+    static public void GameOver()
+    {
+        instance._IsPlaying = false;
+        instance._UIMainMenu.active    = false;
+        instance._UIGame.active        = true;
+        instance._UIGameOver.active    = true;
     }
 }

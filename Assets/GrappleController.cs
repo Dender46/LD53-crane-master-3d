@@ -33,6 +33,11 @@ public class GrappleController : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.IsPlaying())
+        {
+            return;
+        }
+
         TryMovement();
         TryLowering();
 

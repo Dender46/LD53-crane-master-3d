@@ -10,7 +10,7 @@ public class WaterWaves : MonoBehaviour
 
     float _Wobble = 0.0f;
 
-    void Update()
+    void FixedUpdate()
     {
         _Wobble = Mathf.Sin(Time.timeSinceLevelLoad) / _Amplitude;
         Debug.Log(_Wobble);

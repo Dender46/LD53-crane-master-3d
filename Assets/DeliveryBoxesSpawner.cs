@@ -27,6 +27,11 @@ public class DeliveryBoxesSpawner : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.IsPlaying())
+        {
+            return;
+        }
+
         TrySpawning();
 
         if (Input.GetKeyDown(KeyCode.V))

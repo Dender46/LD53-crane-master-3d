@@ -11,6 +11,12 @@ public class Grappler : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.IsPlaying())
+        {
+            _MagnetizedBox = null;
+            return;
+        }
+
         if (_MagnetizedBox)
         {
             _MagnetizedBox.transform.position = transform.position;

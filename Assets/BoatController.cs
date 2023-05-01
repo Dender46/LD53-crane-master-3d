@@ -24,7 +24,7 @@ public class BoatController : MonoBehaviour
     [Space(20)]
     [SerializeField] bool _IsMissionStarted = false;
 
-    float _Timer;
+    [SerializeField, ReadOnly] float _Timer;
 
     void Start()
     {
@@ -34,6 +34,11 @@ public class BoatController : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.IsPlaying())
+        {
+            return;
+        }
+
         _UIMissionText.rectTransform.parent.position = Camera.main.WorldToScreenPoint(transform.position);
 
         if (!_IsMissionStarted)
