@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - DeliveryBox
+  - UnpickableDeliveryBox
   layers:
   - Default
   - TransparentFX
