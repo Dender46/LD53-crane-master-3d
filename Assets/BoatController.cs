@@ -99,6 +99,7 @@ public class BoatController : MonoBehaviour
     {
         if (other.gameObject.tag == "DeliveryBox")
         {
+            other.gameObject.tag = "UnpickableDeliveryBox";
             other.transform.parent = _BoxesDeliveryContainer;
             GameManager.Score++;
 
