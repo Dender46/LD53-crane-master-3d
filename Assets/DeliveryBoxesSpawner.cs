@@ -13,18 +13,19 @@ public class DeliveryBoxesSpawner : MonoBehaviour
 
     [SerializeField] GameObject _BoxPrefab;
 
+    [SerializeField] int _MaxBoxes = 15;
     [SerializeField] float _SpawnInterval = 1.0f;
     [SerializeField] MinMax _SpawnLimitZ = new MinMax(){ Min = 0.0f, Max = 10.0f };
     [SerializeField] MinMax _Strength = new MinMax(){ Min = 10.0f, Max = 20.0f };
     [SerializeField] Vector3 _Direction = Vector3.one;
     [SerializeField] List<Material> _BoxMaterials;
 
-    Transform _BoxesParent;
+    Transform _BoxesContainer;
     float _Timer = 0.0f;
 
     void Start()
     {
-        _BoxesParent = GameObject.Find("(C) Delivery Boxes").transform;
+        _BoxesContainer = GameObject.Find("(C) Delivery Boxes").transform;
     }
 
     void Update()
@@ -44,9 +45,17 @@ public class DeliveryBoxesSpawner : MonoBehaviour
 
     void TrySpawning()
     {
+        if (_BoxesContainer.childCount > _MaxBoxes)
+        {
+            _Timer = 0.0f;
+            return;
+        }
+
         _Timer += Time.deltaTime;
         if (_Timer < _SpawnInterval)
+        {
             return;
+        }
 
         _Timer = 0.0f;
         var newPos = transform.position;
@@ -58,7 +67,7 @@ public class DeliveryBoxesSpawner : MonoBehaviour
 
     void SpawnNewBox()
     {
-        var newBox = Instantiate(_BoxPrefab, transform.position, Quaternion.identity, _BoxesParent);
+        var newBox = Instantiate(_BoxPrefab, transform.position, Quaternion.identity, _BoxesContainer);
         var newBoxRB = newBox.GetComponent<Rigidbody>();
 
         newBoxRB.velocity = _Direction.normalized * Random.Range(_Strength.Min, _Strength.Max);

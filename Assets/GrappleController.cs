@@ -21,6 +21,7 @@ public class GrappleController : MonoBehaviour
 
     Rigidbody _ThisRB;
     SpringJoint _ThisJoint;
+    LineRenderer _ThisRopeDecor;
 
     LoweringState _LoweringState = LoweringState.Stationary;
     LoweringState _LastLoweringState = LoweringState.GoingUp;
@@ -29,10 +30,16 @@ public class GrappleController : MonoBehaviour
     {
         _ThisRB = GetComponent<Rigidbody>();
         _ThisJoint = GetComponent<SpringJoint>();
+        _ThisRopeDecor = GetComponent<LineRenderer>();
     }
 
     void Update()
     {
+        // This component also draws rope from above
+        var posAbove = transform.position;
+        posAbove.y += 100.0f;
+        _ThisRopeDecor.SetPositions(new Vector3[]{ transform.position, posAbove });
+
         if (!GameManager.IsPlaying())
         {
             return;

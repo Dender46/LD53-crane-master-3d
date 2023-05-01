@@ -20,7 +20,8 @@ public class BoatController : MonoBehaviour
     [SerializeField] MinMax _MinMaxNeededBoxes;
     [SerializeField, ReadOnly] int _NeedBoxes = 3;
     [SerializeField, ReadOnly] int _BoxesOnBoard = 0;
-    
+    [Space(10)]
+    [SerializeField] AudioClip _MissionAccomplishedAudio;
     [Space(20)]
     [SerializeField] bool _IsMissionStarted = false;
 
@@ -29,6 +30,12 @@ public class BoatController : MonoBehaviour
     void Start()
     {
         _NeedBoxes = Random.Range(_MinMaxNeededBoxes.Min, _MinMaxNeededBoxes.Max);
+        // If basically first boat:
+        if (_IsMissionStarted)
+        {
+            _NeedBoxes = 3;
+        }
+
         _UIMissionText.text = "0 / " + _NeedBoxes;
     }
 
@@ -108,6 +115,7 @@ public class BoatController : MonoBehaviour
 
             if (_BoxesOnBoard >= _NeedBoxes)
             {
+                GetComponent<AudioSource>().PlayOneShot(_MissionAccomplishedAudio);
                 BoatsManager.RunQueue();
             }
         }

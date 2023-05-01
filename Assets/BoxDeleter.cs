@@ -4,6 +4,9 @@ public class BoxDeleter : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
+        if (other.gameObject.tag == "DeliveryBox")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

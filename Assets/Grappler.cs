@@ -36,7 +36,7 @@ public class Grappler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "DeliveryBox")
+        if (_MagnetizedBox == null && other.gameObject.tag == "DeliveryBox")
         {
             _MagnetizedBox = other.gameObject;
             _MagnetizedBox.transform.position = transform.position;

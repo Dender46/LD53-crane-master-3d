@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.tag == "Ground")
+                if (hit.transform.gameObject)
                 {
                     var newBox = Instantiate(_BoxPrefab, _DeliveryBoxesContainer);
 
