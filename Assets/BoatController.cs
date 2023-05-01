@@ -48,7 +48,7 @@ public class BoatController : MonoBehaviour
         _UIMissionTimer.fillAmount = (_TimeForDelivery - _Timer) / _TimeForDelivery;
         if (_Timer >= _TimeForDelivery)
         {
-            // Game Over
+            GameManager.GameOver();
             return;
         }
 
