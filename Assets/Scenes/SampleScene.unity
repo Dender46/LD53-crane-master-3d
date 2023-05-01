@@ -905,7 +905,6 @@ GameObject:
   - component: {fileID: 409498066}
   - component: {fileID: 409498070}
   - component: {fileID: 409498069}
-  - component: {fileID: 409498068}
   - component: {fileID: 409498067}
   m_Layer: 0
   m_Name: Grapple
@@ -946,19 +945,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &409498068
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409498065}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &409498069
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4556,6 +4542,12 @@ MonoBehaviour:
     Min: 17
     Max: 20
   _Direction: {x: 1, y: 0.5, z: 0}
+  _BoxMaterials:
+  - {fileID: 2100000, guid: ff71e373c70de504a895a026c74420b4, type: 2}
+  - {fileID: 2100000, guid: e1c50539df48c954fb4dd8338274f923, type: 2}
+  - {fileID: 2100000, guid: 33be688c9dddbdc468c178a083d6d8a7, type: 2}
+  - {fileID: 2100000, guid: 20be2d6782ada2d48a59e4530e0aa623, type: 2}
+  - {fileID: 2100000, guid: d0075e66caecb27449611f907c9282b5, type: 2}
 --- !u!1 &2082407921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,7 +4847,6 @@ GameObject:
   - component: {fileID: 2120285130}
   - component: {fileID: 2120285136}
   - component: {fileID: 2120285135}
-  - component: {fileID: 2120285134}
   - component: {fileID: 2120285132}
   - component: {fileID: 2120285138}
   - component: {fileID: 2120285133}
@@ -4916,19 +4907,6 @@ MonoBehaviour:
   _LoweringUpDown:
     Up: 0.5
     Down: 10
---- !u!65 &2120285134
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120285129}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2120285135
 MeshRenderer:
   m_ObjectHideFlags: 0

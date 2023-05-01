@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +17,7 @@ public class DeliveryBoxesSpawner : MonoBehaviour
     [SerializeField] MinMax _SpawnLimitZ = new MinMax(){ Min = 0.0f, Max = 10.0f };
     [SerializeField] MinMax _Strength = new MinMax(){ Min = 10.0f, Max = 20.0f };
     [SerializeField] Vector3 _Direction = Vector3.one;
+    [SerializeField] List<Material> _BoxMaterials;
 
     Transform _BoxesParent;
     float _Timer = 0.0f;
@@ -60,6 +62,11 @@ public class DeliveryBoxesSpawner : MonoBehaviour
         var newBoxRB = newBox.GetComponent<Rigidbody>();
 
         newBoxRB.velocity = _Direction.normalized * Random.Range(_Strength.Min, _Strength.Max);
+
+        var boxMaterial = _BoxMaterials[Random.Range(0, _BoxMaterials.Count)];
+        newBox.transform.GetChild(0).GetComponent<MeshRenderer>().material = boxMaterial;
+        
+        newBox.transform.localScale *= Random.Range(1.0f, 1.3f);
     }
 
     void OnDrawGizmos()
