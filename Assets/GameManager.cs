@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -108,5 +109,10 @@ public class GameManager : MonoBehaviour
         instance._UIMainMenu.active    = false;
         instance._UIGame.active        = true;
         instance._UIGameOver.active    = true;
+    }
+
+    static public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }
