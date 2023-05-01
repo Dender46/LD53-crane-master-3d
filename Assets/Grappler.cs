@@ -4,11 +4,6 @@ public class Grappler : MonoBehaviour
 {
     GameObject _MagnetizedBox = null;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (!GameManager.IsPlaying())
