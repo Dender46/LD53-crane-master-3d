@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124144701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: -3.19, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1558,7 +1558,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093086778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0.88, z: 3}
+  m_LocalPosition: {x: 0.75, y: 1.69, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1594,9 +1594,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222eddbbd3336d14e9a37b1d115d8c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _WaterMaterial: {fileID: 0}
+  _WaterMaterial: {fileID: 2100000, guid: d11a8a23fc4a0b4498c11fc2222d58e3, type: 2}
   _WaterPlane: {fileID: 124144702}
-  _Speed: 2
+  _Speed: 0.07
   _Amplitude: 200
 --- !u!1 &1113622707
 GameObject:
@@ -2078,7 +2078,7 @@ Transform:
   m_GameObject: {fileID: 1680044763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.6, y: 2.41, z: 15.08}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 984027894}
@@ -2828,7 +2828,7 @@ Transform:
   m_GameObject: {fileID: 2128976106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.6, y: 2.41, z: 15.08}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 350662078}
