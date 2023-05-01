@@ -1964,6 +1964,10 @@ PrefabInstance:
       propertyPath: _MinMaxNeededBoxes.Min
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8352792009492332459, guid: 1272d3ef80873ee4d972e34ee85dfece, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: bcce90acc2fdb10478517c0e0d68de78, type: 2}
     - target: {fileID: 8352792010016212785, guid: 1272d3ef80873ee4d972e34ee85dfece, type: 3}
       propertyPath: m_TagString
       value: Ground
