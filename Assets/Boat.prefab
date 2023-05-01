@@ -368,8 +368,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.5, y: 1.8, z: 16.5}
-  m_Center: {x: 0, y: 1.7, z: 0}
+  m_Size: {x: 5.5, y: 0.2, z: 16.5}
+  m_Center: {x: 0, y: 0.68, z: 0}
 --- !u!114 &8352792009492332458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _UIMissionText: {fileID: 0}
+  _UIMissionTimer: {fileID: 0}
   _BoxesDeliveryContainer: {fileID: 8352792008503167844}
   _Speed: 15
   _TimeForDelivery: 60
